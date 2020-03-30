@@ -1,0 +1,201 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Grupo Fransun" />
+    <meta name="author" content="Grupo Fransun" />
+    <link rel="icon" href="~/Images/index.ico">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="body_login">
+
+    <div id="context" class="container h-100">
+
+        <div id="login-row" class="row justify-content-center align-items-center h-100">
+
+            <div class="col-12 col-sm-8 col-md-6 col-lg-5">
+
+                <img class="imagen-logo " src="../../Images/logo.jpg" />
+
+                <form class="login-box bg-white" data-bind="submit:SubmitLogin">
+
+                    <h4 class="text-center text-dark">@ViewBag.Title</h4>
+
+                    <div class="form-group">
+                        <label for="usuario" class="text-dark">Usuario:</label>
+                        <input type="email" data-bind="textInput:Usuario" maxlength="250" class="form-control text-lowercase" id="usuario" placeholder="Ingrese su usuario." autocomplete="off" required />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="text-dark">Contraseña:</label>
+                        <input type="password" data-bind="textInput:Password" maxlength="8" class="form-control" id="password" placeholder="Ingrese su contraseña." autocomplete="off" required />
+                    </div>
+
+                    <div class="form-group">
+                        <div id="alert_ex" class="alert alert-danger alert-dismissible" role="alert">
+                            <h6 data-bind="text:MensajeAlerta"></h6>
+                            <button type="button" class="close" data-bind="click:OcultarAlerta" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión <i class="fas fa-sign-in-alt"></i></button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="modal_cargando" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center">Validando</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+
+                        <div class="spinner-grow text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-secondary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-danger" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-info" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_respuesta" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" data-bind="text: TituloRespuesta"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12  d-flex align-items-center">
+                            <h6 class="text-dark border" data-bind="text:Respuesta"></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/fontawesome")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/repository")
+
+    <script>
+
+        const repository = new Repository();
+
+        const LoginViewModel = {
+            Usuario: ko.observable(),
+            Password: ko.observable(),
+            MensajeAlerta: ko.observable(),
+
+            SubmitLogin: function () {
+
+                this.OcultarAlerta();
+                let usuario = this.Usuario(), password = this.Password(), error = false;
+
+                if (usuario.trim().length == 0 || !usuario || usuario == undefined || usuario == null) {
+                    this.MensajeAlerta("El campo usuario es inválido.");
+                    error = true;
+                }
+
+                if (!error && password.trim().length < 8) {
+                    this.MensajeAlerta("La contraseña debse tener 8 caracteres.");
+                    error = true;
+                }
+
+                if (error) {
+                    this.MostrarAlerta();
+                    return;
+                }
+
+                let loginData = {
+                    Email: usuario,
+                    Password: password
+                };
+
+                $("#modal_cargando").modal("show");
+                repository.UsuariosController.Login(loginData).then(this.HandleLogin);
+
+            },
+            MostrarAlerta: function () {
+                $("#alert_ex").show();
+            },
+            OcultarAlerta: function () {
+                $("#alert_ex").hide();
+            },
+            HandleLogin: function (response) {
+
+                console.log(response);
+
+                setTimeout(function () { $("#modal_cargando").modal("hide"); }, 500);
+
+                if (response.Success) {
+                    window.location.href = window.location.origin + "/Home";
+                }
+
+                if (!response.Success) {
+                    LoginViewModel.MensajeAlerta(response.Error.Title + " " + response.Error.Message);
+                    LoginViewModel.MostrarAlerta();
+                }
+            },
+
+        };
+
+        $(document).ready(function () {
+            LoginViewModel.OcultarAlerta();
+            ko.applyBindings(LoginViewModel, window.context);
+
+        });
+
+    </script>
+
+</body>
+</html>
+
+
