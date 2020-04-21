@@ -20,8 +20,9 @@ namespace GF.MantenimientoIdealease.Web
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                    "~/Content/bootstrap.css",
+                    "~/Content/site.css",
+                    "~/Content/datatables.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                  "~/Scripts/knockout-3.5.1.js"));
@@ -31,6 +32,9 @@ namespace GF.MantenimientoIdealease.Web
 
             bundles.Add(new ScriptBundle("~/bundles/repository").Include(
                     "~/Scripts/Repository.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+               "~/Scripts/datatables.min.js"));
         }
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc67a2525f55429f833e9fa416b3bfb8" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_MAPRIModel.T_Amnl" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.T_Errr" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.T_Usrs" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Abrn" Width="1.5" PointX="0.75" PointY="19.125" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Acls" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Actl" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Anpc" Width="1.5" PointX="8" PointY="6" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Edsc" Width="1.5" PointX="0.75" PointY="15.25" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Etyp" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Intr" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Ucst" Width="1.5" PointX="5.75" PointY="6.75" />
+        <AssociationConnector Association="DB_MAPRIModel.FK__TC_Intr__IdMarca__5165187F" />
+        <AssociationConnector Association="DB_MAPRIModel.FK__TC_Intr__IdClasi__52593CB8" />
+        <AssociationConnector Association="DB_MAPRIModel.FK__TC_Anpc__IdClien__5EBF139D" />
+        <AssociationConnector Association="DB_MAPRIModel.FK__TC_Intr__IdDescr__4F7CD00D" />
+        <AssociationConnector Association="DB_MAPRIModel.FK__TC_Intr__IdTipo__5070F446" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

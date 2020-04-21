@@ -36,20 +36,20 @@ namespace GF.MantenimientoIdealease.Data.Repositories
                 throw excepcion;
             }
 
-            MantenimientoIdealeaseEntities context = null;
+            DB_MAPRI_Entities context = null;
             UsuarioDTO usuarioEncontrado = null;
-            TC_uee usuarioResult = null;
+            T_Usrs usuarioResult = null;
 
             try
             {
-                context = new MantenimientoIdealeaseEntities();
+                context = new DB_MAPRI_Entities();
 
-                usuarioResult = context.TC_uee.AsParallel().FirstOrDefault(
+                usuarioResult = context.T_Usrs.AsParallel().FirstOrDefault(
                     e => e.Email == usuario.Email.ToLower() && e.Password == usuario.Password && e.DeleteDate == null);
 
                 if (usuarioResult == null)
                 {
-                    Exception excepcion = new Exception("No existe un usuario registrado con esos datos..");
+                    Exception excepcion = new Exception("No existe un usuario registrado con esos datos.");
                     excepcion.TryAddInfo(ParameterTypes.Title, "Error al iniciar sesión.");
                     throw excepcion;
                 }

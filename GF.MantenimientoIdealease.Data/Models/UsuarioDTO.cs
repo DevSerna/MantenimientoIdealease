@@ -20,7 +20,7 @@ namespace GF.MantenimientoIdealease.Data.Models
         public Nullable<int> LastUpdateUser { get; set; }
         public Nullable<int> DeleteUser { get; set; }
 
-        public static UsuarioDTO EntityToDTO(TC_uee entity)
+        public static UsuarioDTO EntityToDTO(T_Usrs entity)
         {
             UsuarioDTO dto = new UsuarioDTO()
             {
@@ -29,14 +29,12 @@ namespace GF.MantenimientoIdealease.Data.Models
                 Apellidos = entity.Apellidos,
                 Email = entity.Email,
                 Password = entity.Password,
-                CreationDate = entity.CreationDate,
-                LastUpdate = entity.LastUpdate,
-                DeleteDate = entity.DeleteDate,
-                LastUpdateUser = entity.LastUpdateUser,
-                DeleteUser = entity.DeleteUser
+                CreationDate = entity.CreationDate
             };
 
             return dto;
         }
+
+        public dynamic Data { get; set; }
     }
 }

@@ -1,119 +1,94 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="es-MX">
 <head>
-    <title>@ViewBag.Title</title>
-    <meta charset="utf-8">
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Grupo Fransun" />
-    <meta name="author" content="Grupo Fransun" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="distribution" content="global" />
+    <meta name="author" content="G.F. Inntek" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.AppName</title>
     <link rel="icon" href="~/Images/index.ico">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body class="body_login">
-
-    <div id="context" class="container h-100">
-
-        <div id="login-row" class="row justify-content-center align-items-center h-100">
-
-            <div class="col-12 col-sm-8 col-md-6 col-lg-5">
-
-                <img class="imagen-logo " src="../../Images/logo.jpg" />
-
-                <form class="login-box bg-white" data-bind="submit:SubmitLogin">
-
-                    <h4 class="text-center text-dark">@ViewBag.Title</h4>
-
-                    <div class="form-group">
-                        <label for="usuario" class="text-dark">Usuario:</label>
-                        <input type="email" data-bind="textInput:Usuario" maxlength="250" class="form-control text-lowercase" id="usuario" placeholder="Ingrese su usuario." autocomplete="off" required />
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password" class="text-dark">Contraseña:</label>
-                        <input type="password" data-bind="textInput:Password" maxlength="8" class="form-control" id="password" placeholder="Ingrese su contraseña." autocomplete="off" required />
-                    </div>
-
-                    <div class="form-group">
-                        <div id="alert_ex" class="alert alert-danger alert-dismissible" role="alert">
-                            <h6 data-bind="text:MensajeAlerta"></h6>
-                            <button type="button" class="close" data-bind="click:OcultarAlerta" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary w-100">Iniciar Sesión <i class="fas fa-sign-in-alt"></i></button>
-                    </div>
-
-                </form>
-
-            </div>
-        </div>
-
-    </div>
-
-    <div class="modal fade" id="modal_cargando" tabindex="-1" role="dialog" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-center">Validando</h5>
+<body class="bg-light body_login">
+    <main id="context" class="position-absolute d-flex flex-column justify-content-center align-items-center h-100 w-100">
+        <img class="mb-4" src="~/Images/imagotipo-fransun.png" style="height:150px;filter:drop-shadow(0 0 7px #f8f9fa);" />
+        <div class="bg-white rounded shadow-6dp pt-5 pb-4 pl-5 pr-5" style="max-width:500px;width:100%">
+            <form data-bind="submit:SubmitLogin">
+                <div class="form-group d-none">
+                    <h5 class="text-dark text-center my-0 py-0">Portal @ViewBag.AppName</h5>
                 </div>
-                <div class="modal-body">
-                    <div class="d-flex justify-content-center">
-
-                        <div class="spinner-grow text-primary" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                        <div class="spinner-grow text-secondary" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                        <div class="spinner-grow text-success" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                        <div class="spinner-grow text-danger" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                        <div class="spinner-grow text-warning" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                        <div class="spinner-grow text-info" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-
-                    </div>
-
-
+                <div class="form-group">
+                    <label class="text-muted" for="exampleInputEmail1">Usuario</label>
+                    <input type="email" data-bind="textInput:Usuario" maxlength="250" autocomplete="off" class="form-control text-center text-lowercase" id="exampleInputEmail1" required="required" />
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modal_respuesta" tabindex="-1" role="dialog" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" data-bind="text: TituloRespuesta"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                <div class="form-group">
+                    <label class="text-muted" for="exampleInputPassword1">Contraseña</label>
+                    <input type="password" data-bind="textInput:Password" maxlength="8" autocomplete="off" class="form-control text-center" id="exampleInputPassword1" required="required" />
+                </div>
+                <div class="form-group form-check pl-1 d-none">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing" />
+                        <label class="custom-control-label text-muted" for="customControlAutosizing">Recordar usuario</label>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-link text-decoration-none">
+                        <span><i class="fas fa-sign-in-alt mr-2"></i>Entrar</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12  d-flex align-items-center">
-                            <h6 class="text-dark border" data-bind="text:Respuesta"></h6>
-                        </div>
+            </form>
+        </div>
+
+    </main>
+
+    <div id="alertas" class="front-panel mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 ">
+                    <div id="alert_ex" class="alert alert-danger alert-dismissible fade show shadow" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;
+                        <strong>Ocurrió un error.</strong>&nbsp;&nbsp;<span data-bind="text:MensajeAlerta"></span>
+                        <button type="button" class="close allow-events" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="fixed-bottom" style="z-index:-1;">
+        <svg class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="50" y="0" fill="#9eb5d9" />
+                <use xlink:href="#gentle-wave" x="50" y="3" fill="#b6c7e2" />
+                <use xlink:href="#gentle-wave" x="50" y="7" fill="#cedaec" />
+            </g>
+        </svg>
+    </footer>
+
+    <div class="modal fade" id="modal_procesando" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary p-2">
+                    <h5 class="modal-title text-left text-white w-100 m-0">Procesando</h5>
+                </div>
+                <div class="modal-body p-2">
+                    <div class="d-flex justify-content-center">
+                        <h1 class="text-primary"><i class="fas fa-cog fa-spin"></i><i class="fas fa-cog fa-spin"></i><i class="fas fa-cog fa-spin"></i></h1>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,7 +107,6 @@
         const LoginViewModel = {
             Usuario: ko.observable(),
             Password: ko.observable(),
-            MensajeAlerta: ko.observable(),
 
             SubmitLogin: function () {
 
@@ -140,12 +114,12 @@
                 let usuario = this.Usuario(), password = this.Password(), error = false;
 
                 if (usuario.trim().length == 0 || !usuario || usuario == undefined || usuario == null) {
-                    this.MensajeAlerta("El campo usuario es inválido.");
+                    AlertasViewModel.MensajeAlerta("El campo usuario es inválido.");
                     error = true;
                 }
 
                 if (!error && password.trim().length < 8) {
-                    this.MensajeAlerta("La contraseña debse tener 8 caracteres.");
+                    AlertasViewModel.MensajeAlerta("La contraseña debse tener 8 caracteres.");
                     error = true;
                 }
 
@@ -159,7 +133,10 @@
                     Password: password
                 };
 
-                $("#modal_cargando").modal("show");
+                sessionStorage.setItem('GF_USER_PIER2R', usuario);
+                sessionStorage.setItem('GF_PASSWORD_PIER2R', password);
+
+                $("#modal_procesando").modal("show");
                 repository.UsuariosController.Login(loginData).then(this.HandleLogin);
 
             },
@@ -173,29 +150,40 @@
 
                 console.log(response);
 
-                setTimeout(function () { $("#modal_cargando").modal("hide"); }, 500);
+                setTimeout(function () { $("#modal_procesando").modal("hide"); }, 500);
 
                 if (response.Success) {
                     window.location.href = window.location.origin + "/Home";
                 }
 
                 if (!response.Success) {
-                    LoginViewModel.MensajeAlerta(response.Error.Title + " " + response.Error.Message);
-                    LoginViewModel.MostrarAlerta();
+                    AlertasViewModel.MensajeAlerta(response.Error.Title + " " + response.Error.Message);
+                    AlertasViewModel.MostrarAlerta();
                 }
             },
 
         };
 
+        const AlertasViewModel = {
+
+            MensajeAlerta: ko.observable(),
+            OcultarAlerta: function () {
+                $("#alert_ex").hide();
+            },
+            MostrarAlerta: function () {
+                $("#alert_ex").show();
+            }
+
+        }
+
         $(document).ready(function () {
             LoginViewModel.OcultarAlerta();
             ko.applyBindings(LoginViewModel, window.context);
-
+            ko.applyBindings(AlertasViewModel, window.alertas);
+            //  $("#modal_procesando").modal("show");
         });
 
     </script>
 
 </body>
 </html>
-
-

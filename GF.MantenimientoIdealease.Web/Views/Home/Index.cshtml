@@ -1,20 +1,215 @@
 ﻿<br />
-<div class="container bg-white shadow-sm border">
+<div id="context" class="container bg-light">
 
+    <section class="row menu-section" data-bind="foreach:Cards">
 
-    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-3">
+            <article class="card text-white mb-4 shadow-3dp border-0 gf-card-menu" data-bind="css:Color">
+                <div class="card-body card-menu text-right">
+                    <div class="card-body-icon">
+                        <i class="fas" data-bind="css:Icon"></i>
+                    </div>
+                    <h5 class="card-title text-shadow" data-bind="text:Name"></h5>
 
-        <div class="col-12">
-            <h3 class="text-dark">Panel de Control</h3>
+                    <h6 class="card-title text-shadow" data-bind="text:Detail"></h6>
+                </div>
+                <footer class="card-footer footer-dark border-top-0">
+                    <a data-bind="attr: { href:Url }, click:$parent.ChangeCard" class="btn btn-link btn-block text-white text-decoration-none p-0 d-flex justify-content-between align-items-center">
+                        <span class="text-shadow">Iniciar</span>
+                        <span class="filter-shadow"><i class="fas fa-share"></i></span>
+                    </a>
+                </footer>
+            </article>
+        </div>
+    </section>
+
+    <section class="row">
+
+        <div id="gf-card-1" class="col-12">
+            <article class="card shadow-1dp mb-4">
+                <header class="card-header shadow-sm bg-g-blue d-flex">
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 1</h5>
+                    <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
+                </header>
+                <div class="card-body">
+
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-12">
+
+                                <h5 class="card-title text-left text-muted"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;Carga de Kilometraje Recorrido</h5>
+
+                            </div>
+
+                            <div class="col-12 mt-3">
+
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile02" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                        <label class="custom-file-label" for="inputGroupFile02">Seleccionar Archivo</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="">Subir</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </article>
         </div>
 
+        <div id="gf-card-2" class="col-12 d-none">
+            <article class="card shadow-1dp mb-4">
+                <header class="card-header shadow-sm bg-g-blue d-flex">
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 2</h5>
+                    <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
+                </header>
+                <div class="card-body">
+
+                </div>
+            </article>
+        </div>
+
+        <div id="gf-card-3" class="col-12 d-none">
+            <article class="card shadow-1dp mb-4">
+                <header class="card-header shadow-sm bg-g-blue d-flex">
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 3</h5>
+                    <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
+                </header>
+                <div class="card-body">
+
+                </div>
+            </article>
+        </div>
+
+        <div id="gf-card-4" class="col-12 d-none">
+            <article class="card shadow-1dp mb-4">
+                <header class="card-header shadow-sm bg-g-blue d-flex">
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 4</h5>
+                    <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
+                </header>
+                <div class="card-body">
+
+                </div>
+            </article>
+        </div>
+
+        <div id="gf-card-5" class="col-12 d-none">
+            <article class="card shadow-1dp mb-4">
+                <header class="card-header shadow-sm bg-g-blue d-flex">
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 5</h5>
+                    <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
+                </header>
+                <div class="card-body">
+
+                </div>
+            </article>
+        </div>
+
+        <div id="gf-card-6" class="col-12 d-none">
+            <article class="card shadow-1dp mb-4">
+                <header class="card-header shadow-sm bg-g-blue d-flex">
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 6</h5>
+                    <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
+                </header>
+                <div class="card-body">
+
+                </div>
+            </article>
+        </div>
+
+
+
+    </section>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <hr />
+            <footer>
+                <div class="row">
+                    <div class="col text-left">
+                        <span id="siteseal">
+                            <script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=cm1J6bJAPUSxWmHzxi5r3D65THkVnkvmTSQE0JDenYsr4zxOvfBtyxkoxqkr"></script>
+                        </span>
+                    </div>
+                    <div class="col text-right">
+                        <span class="text-muted">
+                            &copy; @DateTime.Now.Year - Portal de @ViewBag.AppName - Inntek GF
+                        </span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<div id="modales">
+
+    <div class="modal fade" id="modal_procesando" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary p-2">
+                    <h5 class="modal-title text-left text-white w-100 m-0">Procesando</h5>
+                </div>
+                <div class="modal-body p-2">
+                    <div class="d-flex justify-content-center">
+                        <h1 class="text-primary"><i class="fas fa-cog fa-spin"></i><i class="fas fa-cog fa-spin"></i><i class="fas fa-cog fa-spin"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
 
 @section scripts{
 
+    <script>
+
+        const cards = [
+            { Id: 1, Name: "Opción 1", Detail: "", Url: "#gf-card-1", Icon: "fa-info-circle", Color: "bg-g-orange-400" },
+            { Id: 2, Name: "Opción 2", Detail: "", Url: "#gf-card-2", Icon: "fa-info-circle", Color: "bg-g-red-600" },
+            { Id: 3, Name: "Opción 3", Detail: "", Url: "#gf-card-3", Icon: "fa-info-circle", Color: "bg-g-green-600" },
+            { Id: 4, Name: "Opción 4", Detail: "", Url: "#gf-card-4", Icon: "fa-info-circle", Color: "bg-g-deep-blue-600" },
+            { Id: 5, Name: "Opción 5", Detail: "", Url: "#gf-card-5", Icon: "fa-info-circle", Color: "bg-g-deep-purple-500" },
+            { Id: 6, Name: "Opción 6", Detail: "", Url: "#gf-card-6", Icon: "fa-info-circle", Color: "bg-g-teal-500" }
+        ];
 
 
+        const controller = {
+
+            Cards: ko.observableArray(cards),
+            ChangeCard: function (data) {
+
+                for (let i = 1; i <= cards.length; i++) {
+                    let idCard = "#gf-card-" + i;
+                    if (i == data.Id) {
+                        $(idCard).removeClass('d-none');
+                        continue;
+                    }
+                    $(idCard).addClass('d-none');
+                }
+            }
+
+        };
+
+        const controller_modales = {
+        }
+
+        $(document).ready(function () {
+
+            ko.applyBindings(controller, window.context);
+            ko.applyBindings(controller_modales, window.modales);
+
+        });
+
+    </script>
 
 }

@@ -1,0 +1,771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_MAPRIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_Amnl">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTabla" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTabla" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Actividad" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Ubicacion" Type="varchar" MaxLength="250" />
+          <Property Name="Procedimiento" Type="varchar" MaxLength="250" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Errr">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTabla" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTabla" Type="int" Nullable="false" />
+          <Property Name="NumeroError" Type="int" />
+          <Property Name="NombreSP" Type="varchar" MaxLength="250" />
+          <Property Name="Mensaje" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Usrs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TC_Abrn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarcaUnidad" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TC_Acls">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClasificacionUnidad" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TC_Actl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TC_Anpc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="int" Nullable="false" />
+          <Property Name="NombreCliente" Type="varchar(max)" Nullable="false" />
+          <Property Name="FkmsPMA" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="FdiasPMA" Type="int" />
+          <Property Name="FkmsPMB" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="FdiasPMB" Type="int" />
+          <Property Name="FkmsPMC" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="FdiasPMC" Type="int" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TC_Edsc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescripcionUnidad" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TC_Etyp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoUnidad" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TC_Intr">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDescripcion" Type="int" Nullable="false" />
+          <Property Name="IdTipo" Type="int" Nullable="false" />
+          <Property Name="IdMarca" Type="int" Nullable="false" />
+          <Property Name="IdClasificacion" Type="int" Nullable="false" />
+          <Property Name="FkmsPMA" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="FdiasPMA" Type="int" />
+          <Property Name="FkmsPMB" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="FdiasPMB" Type="int" />
+          <Property Name="FkmsPMC" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="FdiasPMC" Type="int" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TC_Ucst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="NombreCliente" Type="varchar(max)" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK__TC_Anpc__IdClien__5EBF139D">
+          <End Role="TC_Ucst" Type="Self.TC_Ucst" Multiplicity="1" />
+          <End Role="TC_Anpc" Type="Self.TC_Anpc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Ucst">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Anpc">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TC_Intr__IdClasi__52593CB8">
+          <End Role="TC_Acls" Type="Self.TC_Acls" Multiplicity="1" />
+          <End Role="TC_Intr" Type="Self.TC_Intr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Acls">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Intr">
+              <PropertyRef Name="IdClasificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TC_Intr__IdDescr__4F7CD00D">
+          <End Role="TC_Edsc" Type="Self.TC_Edsc" Multiplicity="1" />
+          <End Role="TC_Intr" Type="Self.TC_Intr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Edsc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Intr">
+              <PropertyRef Name="IdDescripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TC_Intr__IdMarca__5165187F">
+          <End Role="TC_Abrn" Type="Self.TC_Abrn" Multiplicity="1" />
+          <End Role="TC_Intr" Type="Self.TC_Intr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Abrn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Intr">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TC_Intr__IdTipo__5070F446">
+          <End Role="TC_Etyp" Type="Self.TC_Etyp" Multiplicity="1" />
+          <End Role="TC_Intr" Type="Self.TC_Intr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Etyp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Intr">
+              <PropertyRef Name="IdTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_MAPRIModelStoreContainer">
+          <EntitySet Name="T_Amnl" EntityType="Self.T_Amnl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Errr" EntityType="Self.T_Errr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Usrs" EntityType="Self.T_Usrs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Abrn" EntityType="Self.TC_Abrn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Acls" EntityType="Self.TC_Acls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Actl" EntityType="Self.TC_Actl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Anpc" EntityType="Self.TC_Anpc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Edsc" EntityType="Self.TC_Edsc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Etyp" EntityType="Self.TC_Etyp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Intr" EntityType="Self.TC_Intr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Ucst" EntityType="Self.TC_Ucst" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TC_Anpc__IdClien__5EBF139D" Association="Self.FK__TC_Anpc__IdClien__5EBF139D">
+            <End Role="TC_Ucst" EntitySet="TC_Ucst" />
+            <End Role="TC_Anpc" EntitySet="TC_Anpc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TC_Intr__IdClasi__52593CB8" Association="Self.FK__TC_Intr__IdClasi__52593CB8">
+            <End Role="TC_Acls" EntitySet="TC_Acls" />
+            <End Role="TC_Intr" EntitySet="TC_Intr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TC_Intr__IdDescr__4F7CD00D" Association="Self.FK__TC_Intr__IdDescr__4F7CD00D">
+            <End Role="TC_Edsc" EntitySet="TC_Edsc" />
+            <End Role="TC_Intr" EntitySet="TC_Intr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TC_Intr__IdMarca__5165187F" Association="Self.FK__TC_Intr__IdMarca__5165187F">
+            <End Role="TC_Abrn" EntitySet="TC_Abrn" />
+            <End Role="TC_Intr" EntitySet="TC_Intr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TC_Intr__IdTipo__5070F446" Association="Self.FK__TC_Intr__IdTipo__5070F446">
+            <End Role="TC_Etyp" EntitySet="TC_Etyp" />
+            <End Role="TC_Intr" EntitySet="TC_Intr" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_MAPRIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_Amnl">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTabla" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTabla" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Actividad" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ubicacion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Procedimiento" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Errr">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdTabla" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTabla" Type="Int32" Nullable="false" />
+          <Property Name="NumeroError" Type="Int32" />
+          <Property Name="NombreSP" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Mensaje" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Usrs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DB_MAPRI_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_Amnl" EntityType="Self.T_Amnl" />
+          <EntitySet Name="T_Errr" EntityType="Self.T_Errr" />
+          <EntitySet Name="T_Usrs" EntityType="Self.T_Usrs" />
+          <EntitySet Name="TC_Abrn" EntityType="DB_MAPRIModel.TC_Abrn" />
+          <EntitySet Name="TC_Acls" EntityType="DB_MAPRIModel.TC_Acls" />
+          <EntitySet Name="TC_Actl" EntityType="DB_MAPRIModel.TC_Actl" />
+          <EntitySet Name="TC_Anpc" EntityType="DB_MAPRIModel.TC_Anpc" />
+          <EntitySet Name="TC_Edsc" EntityType="DB_MAPRIModel.TC_Edsc" />
+          <EntitySet Name="TC_Etyp" EntityType="DB_MAPRIModel.TC_Etyp" />
+          <EntitySet Name="TC_Intr" EntityType="DB_MAPRIModel.TC_Intr" />
+          <EntitySet Name="TC_Ucst" EntityType="DB_MAPRIModel.TC_Ucst" />
+          <AssociationSet Name="FK__TC_Intr__IdMarca__5165187F" Association="DB_MAPRIModel.FK__TC_Intr__IdMarca__5165187F">
+            <End Role="TC_Abrn" EntitySet="TC_Abrn" />
+            <End Role="TC_Intr" EntitySet="TC_Intr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TC_Intr__IdClasi__52593CB8" Association="DB_MAPRIModel.FK__TC_Intr__IdClasi__52593CB8">
+            <End Role="TC_Acls" EntitySet="TC_Acls" />
+            <End Role="TC_Intr" EntitySet="TC_Intr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TC_Anpc__IdClien__5EBF139D" Association="DB_MAPRIModel.FK__TC_Anpc__IdClien__5EBF139D">
+            <End Role="TC_Ucst" EntitySet="TC_Ucst" />
+            <End Role="TC_Anpc" EntitySet="TC_Anpc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TC_Intr__IdDescr__4F7CD00D" Association="DB_MAPRIModel.FK__TC_Intr__IdDescr__4F7CD00D">
+            <End Role="TC_Edsc" EntitySet="TC_Edsc" />
+            <End Role="TC_Intr" EntitySet="TC_Intr" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TC_Intr__IdTipo__5070F446" Association="DB_MAPRIModel.FK__TC_Intr__IdTipo__5070F446">
+            <End Role="TC_Etyp" EntitySet="TC_Etyp" />
+            <End Role="TC_Intr" EntitySet="TC_Intr" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TC_Abrn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarcaUnidad" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TC_Intr" Relationship="DB_MAPRIModel.FK__TC_Intr__IdMarca__5165187F" FromRole="TC_Abrn" ToRole="TC_Intr" />
+        </EntityType>
+        <EntityType Name="TC_Acls">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClasificacionUnidad" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TC_Intr" Relationship="DB_MAPRIModel.FK__TC_Intr__IdClasi__52593CB8" FromRole="TC_Acls" ToRole="TC_Intr" />
+        </EntityType>
+        <EntityType Name="TC_Actl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TC_Anpc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="Int32" Nullable="false" />
+          <Property Name="NombreCliente" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FkmsPMA" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="FdiasPMA" Type="Int32" />
+          <Property Name="FkmsPMB" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="FdiasPMB" Type="Int32" />
+          <Property Name="FkmsPMC" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="FdiasPMC" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TC_Ucst" Relationship="DB_MAPRIModel.FK__TC_Anpc__IdClien__5EBF139D" FromRole="TC_Anpc" ToRole="TC_Ucst" />
+        </EntityType>
+        <EntityType Name="TC_Edsc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionUnidad" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TC_Intr" Relationship="DB_MAPRIModel.FK__TC_Intr__IdDescr__4F7CD00D" FromRole="TC_Edsc" ToRole="TC_Intr" />
+        </EntityType>
+        <EntityType Name="TC_Etyp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoUnidad" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TC_Intr" Relationship="DB_MAPRIModel.FK__TC_Intr__IdTipo__5070F446" FromRole="TC_Etyp" ToRole="TC_Intr" />
+        </EntityType>
+        <EntityType Name="TC_Intr">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDescripcion" Type="Int32" Nullable="false" />
+          <Property Name="IdTipo" Type="Int32" Nullable="false" />
+          <Property Name="IdMarca" Type="Int32" Nullable="false" />
+          <Property Name="IdClasificacion" Type="Int32" Nullable="false" />
+          <Property Name="FkmsPMA" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="FdiasPMA" Type="Int32" />
+          <Property Name="FkmsPMB" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="FdiasPMB" Type="Int32" />
+          <Property Name="FkmsPMC" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="FdiasPMC" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TC_Abrn" Relationship="DB_MAPRIModel.FK__TC_Intr__IdMarca__5165187F" FromRole="TC_Intr" ToRole="TC_Abrn" />
+          <NavigationProperty Name="TC_Acls" Relationship="DB_MAPRIModel.FK__TC_Intr__IdClasi__52593CB8" FromRole="TC_Intr" ToRole="TC_Acls" />
+          <NavigationProperty Name="TC_Edsc" Relationship="DB_MAPRIModel.FK__TC_Intr__IdDescr__4F7CD00D" FromRole="TC_Intr" ToRole="TC_Edsc" />
+          <NavigationProperty Name="TC_Etyp" Relationship="DB_MAPRIModel.FK__TC_Intr__IdTipo__5070F446" FromRole="TC_Intr" ToRole="TC_Etyp" />
+        </EntityType>
+        <EntityType Name="TC_Ucst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="NombreCliente" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TC_Anpc" Relationship="DB_MAPRIModel.FK__TC_Anpc__IdClien__5EBF139D" FromRole="TC_Ucst" ToRole="TC_Anpc" />
+        </EntityType>
+        <Association Name="FK__TC_Intr__IdMarca__5165187F">
+          <End Type="DB_MAPRIModel.TC_Abrn" Role="TC_Abrn" Multiplicity="1" />
+          <End Type="DB_MAPRIModel.TC_Intr" Role="TC_Intr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Abrn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Intr">
+              <PropertyRef Name="IdMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TC_Intr__IdClasi__52593CB8">
+          <End Type="DB_MAPRIModel.TC_Acls" Role="TC_Acls" Multiplicity="1" />
+          <End Type="DB_MAPRIModel.TC_Intr" Role="TC_Intr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Acls">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Intr">
+              <PropertyRef Name="IdClasificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TC_Anpc__IdClien__5EBF139D">
+          <End Type="DB_MAPRIModel.TC_Ucst" Role="TC_Ucst" Multiplicity="1" />
+          <End Type="DB_MAPRIModel.TC_Anpc" Role="TC_Anpc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Ucst">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Anpc">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TC_Intr__IdDescr__4F7CD00D">
+          <End Type="DB_MAPRIModel.TC_Edsc" Role="TC_Edsc" Multiplicity="1" />
+          <End Type="DB_MAPRIModel.TC_Intr" Role="TC_Intr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Edsc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Intr">
+              <PropertyRef Name="IdDescripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TC_Intr__IdTipo__5070F446">
+          <End Type="DB_MAPRIModel.TC_Etyp" Role="TC_Etyp" Multiplicity="1" />
+          <End Type="DB_MAPRIModel.TC_Intr" Role="TC_Intr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TC_Etyp">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TC_Intr">
+              <PropertyRef Name="IdTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_MAPRIModelStoreContainer" CdmEntityContainer="DB_MAPRI_Entities">
+          <EntitySetMapping Name="T_Amnl">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.T_Amnl">
+              <MappingFragment StoreEntitySet="T_Amnl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTabla" ColumnName="IdTabla" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Procedimiento" ColumnName="Procedimiento" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Errr">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.T_Errr">
+              <MappingFragment StoreEntitySet="T_Errr">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTabla" ColumnName="IdTabla" />
+                <ScalarProperty Name="NumeroError" ColumnName="NumeroError" />
+                <ScalarProperty Name="NombreSP" ColumnName="NombreSP" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Usrs">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.T_Usrs">
+              <MappingFragment StoreEntitySet="T_Usrs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Abrn">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Abrn">
+              <MappingFragment StoreEntitySet="TC_Abrn">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="MarcaUnidad" ColumnName="MarcaUnidad" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Acls">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Acls">
+              <MappingFragment StoreEntitySet="TC_Acls">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="ClasificacionUnidad" ColumnName="ClasificacionUnidad" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Actl">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Actl">
+              <MappingFragment StoreEntitySet="TC_Actl">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Anpc">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Anpc">
+              <MappingFragment StoreEntitySet="TC_Anpc">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FdiasPMC" ColumnName="FdiasPMC" />
+                <ScalarProperty Name="FkmsPMC" ColumnName="FkmsPMC" />
+                <ScalarProperty Name="FdiasPMB" ColumnName="FdiasPMB" />
+                <ScalarProperty Name="FkmsPMB" ColumnName="FkmsPMB" />
+                <ScalarProperty Name="FdiasPMA" ColumnName="FdiasPMA" />
+                <ScalarProperty Name="FkmsPMA" ColumnName="FkmsPMA" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Edsc">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Edsc">
+              <MappingFragment StoreEntitySet="TC_Edsc">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="DescripcionUnidad" ColumnName="DescripcionUnidad" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Etyp">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Etyp">
+              <MappingFragment StoreEntitySet="TC_Etyp">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="TipoUnidad" ColumnName="TipoUnidad" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Intr">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Intr">
+              <MappingFragment StoreEntitySet="TC_Intr">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FdiasPMC" ColumnName="FdiasPMC" />
+                <ScalarProperty Name="FkmsPMC" ColumnName="FkmsPMC" />
+                <ScalarProperty Name="FdiasPMB" ColumnName="FdiasPMB" />
+                <ScalarProperty Name="FkmsPMB" ColumnName="FkmsPMB" />
+                <ScalarProperty Name="FdiasPMA" ColumnName="FdiasPMA" />
+                <ScalarProperty Name="FkmsPMA" ColumnName="FkmsPMA" />
+                <ScalarProperty Name="IdClasificacion" ColumnName="IdClasificacion" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="IdDescripcion" ColumnName="IdDescripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Ucst">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Ucst">
+              <MappingFragment StoreEntitySet="TC_Ucst">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
