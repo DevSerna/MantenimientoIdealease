@@ -25,7 +25,7 @@
 
     <section class="row">
 
-        <div id="gf-card-1" class="col-12">
+        <div id="gf-card-1" class="col-12 d-none">
             <article class="card shadow-1dp mb-4">
                 <header class="card-header shadow-sm bg-g-blue d-flex">
                     <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 1</h5>
@@ -33,39 +33,14 @@
                 </header>
                 <div class="card-body">
 
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="col-12">
-
-                                <h5 class="card-title text-left text-muted"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;Carga de Kilometraje Recorrido</h5>
-
-                            </div>
-
-                            <div class="col-12 mt-3">
-
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="inputGroupFile02" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                                        <label class="custom-file-label" for="inputGroupFile02">Seleccionar Archivo</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Subir</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
             </article>
         </div>
 
-        <div id="gf-card-2" class="col-12 d-none">
+        <div id="gf-card-2" class="col-12">
             <article class="card shadow-1dp mb-4">
                 <header class="card-header shadow-sm bg-g-blue d-flex">
-                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 2</h5>
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-tools"></i>&nbsp;&nbsp;Mantenimiento a Unidades</h5>
                     <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
                 </header>
                 <div class="card-body">
@@ -77,7 +52,7 @@
         <div id="gf-card-3" class="col-12 d-none">
             <article class="card shadow-1dp mb-4">
                 <header class="card-header shadow-sm bg-g-blue d-flex">
-                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 3</h5>
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-tools"></i>&nbsp;&nbsp;Mantenimiento a Equipos Aliados</h5>
                     <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
                 </header>
                 <div class="card-body">
@@ -167,26 +142,69 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal_cargar_int_kil" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary p-2">
+                    <h5 class="modal-title text-left text-white w-100 m-0"><i class="fas fa-file-upload"></i>&nbsp; Cargar archivos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-2">
+
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-12 mt-3">
+                                <h6 class="text-muted"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;Interface del kilometraje recorrido de las unidades.</h6>
+                                <input id="if_archivo_interface" type="file" class="d-none" accept=".xlsx,.csv" data-bind="event: { change: function(){ OnLoadFileInterface($element.files[0]) }  }" />
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-file-excel"></i></span>
+                                    </div>
+                                    <input type="text" name="" id="" class="form-control" data-bind="textInput:NombreArchivoInterface" readonly>
+                                    <div id="b_cargar_interface" class="input-group-append">
+                                        <span class="input-group-text btn" data-bind="text:EstatusArchivoInterface, click:AbrirSeleccionInterface"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer p-2">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: SubirArchivoInterface">Subir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @section scripts{
 
     <script>
 
+        const repositoryMain = new Repository();
+
         const cards = [
-            { Id: 1, Name: "Opción 1", Detail: "", Url: "#gf-card-1", Icon: "fa-info-circle", Color: "bg-g-orange-400" },
-            { Id: 2, Name: "Opción 2", Detail: "", Url: "#gf-card-2", Icon: "fa-info-circle", Color: "bg-g-red-600" },
-            { Id: 3, Name: "Opción 3", Detail: "", Url: "#gf-card-3", Icon: "fa-info-circle", Color: "bg-g-green-600" },
-            { Id: 4, Name: "Opción 4", Detail: "", Url: "#gf-card-4", Icon: "fa-info-circle", Color: "bg-g-deep-blue-600" },
-            { Id: 5, Name: "Opción 5", Detail: "", Url: "#gf-card-5", Icon: "fa-info-circle", Color: "bg-g-deep-purple-500" },
-            { Id: 6, Name: "Opción 6", Detail: "", Url: "#gf-card-6", Icon: "fa-info-circle", Color: "bg-g-teal-500" }
+            { Id: 1, Name: "Kilometraje recorrido ", Detail: "Cargar Archivo", Url: "#gf-card-1", Icon: "fa-info-circle", Color: "bg-g-orange-400" },
+            { Id: 2, Name: "Mantenimiento a Unidades", Detail: "", Url: "#gf-card-2", Icon: "fa-tools", Color: "bg-g-red-600" },
+            { Id: 3, Name: "Mantenimiento a Equipos Aliados", Detail: "", Url: "#gf-card-3", Icon: "fa-tools", Color: "bg-g-green-600" },
+            { Id: 4, Name: "Opción 4", Detail: "", Url: "#gf-card-4", Icon: "fa-info-circle", Color: "bg-g-deep-blue-600" }
         ];
 
 
         const controller = {
-
             Cards: ko.observableArray(cards),
             ChangeCard: function (data) {
+
+                if (data.Id == 1) {
+                    $("#modal_cargar_int_kil").modal("show");
+                    return;
+                }
 
                 for (let i = 1; i <= cards.length; i++) {
                     let idCard = "#gf-card-" + i;
@@ -201,12 +219,90 @@
         };
 
         const controller_modales = {
+            NombreArchivoInterface: ko.observable('Selecciona un archivo...'),
+            EstatusArchivoInterface: ko.observable('Buscar'),
+            DatosArchivoInterface: ko.observable(),
+            FileName: ko.observable(),
+            FileContentType: ko.observable(),
+            FileSize : ko.observable(),
+            OnLoadFileInterface: async function (file) {
+
+                if (file) {
+
+                    this.NombreArchivoInterface(file.name);
+                    this.EstatusArchivoInterface('Cargando...');
+
+                    let data = await GetFileData(file);
+                    this.DatosArchivoInterface(data);
+
+                }
+            },
+            CerrarSesion: function () {
+                repositoryMain.UsuariosController.Logout();
+                setTimeout(function () { window.location.href = window.location.origin + '/Home' }, 1000);
+            },
+            AbrirSeleccionInterface: function () {
+                $('#if_archivo_interface').trigger('click');
+            },
+            SubirArchivoInterface: function () {
+
+                let data = {
+                    Name: this.FileName(),
+                    ContentType: this.FileContentType(),
+                    Data: this.DatosArchivoInterface(),
+                    Size: this.FileSize()
+                };
+
+                console.log(data);
+
+                $("#modal_procesando").modal("show");
+
+                repository.HistoricoKilometrajeController.SubirArchivoInterface(data)
+                    .then(HandleSubirArchivoInterface);
+            }
+        }
+
+        function HandleSubirArchivoInterface(data) {
+            console.log(data)
+        }
+
+        function GetFileData(file) {
+
+            return new Promise((resolve, reject) => {
+
+                if (file) {
+
+                    const render = new FileReader();
+
+                    render.onload = function (response) {
+                       
+                        var buffer = new Uint8Array(response.target.result);
+                        resolve(Array.from(buffer));
+                    };
+
+                    render.onerror = reject;
+
+                    controller_modales.FileName(file.name);
+                    controller_modales.FileContentType(file.type);
+                    controller_modales.FileSize(file.size);
+                    controller_modales.EstatusArchivoInterface('Listo');
+
+                    render.readAsArrayBuffer(file);
+
+                }
+
+                else {
+                    resolve(null);
+                }
+
+            });
         }
 
         $(document).ready(function () {
 
             ko.applyBindings(controller, window.context);
             ko.applyBindings(controller_modales, window.modales);
+
 
         });
 

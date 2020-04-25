@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DB_MAPRIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="T_Amnl">
           <Key>
             <PropertyRef Name="Id" />
@@ -19,6 +29,36 @@
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="T_Ampr">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoUnidad" Type="varchar" MaxLength="50" />
+          <Property Name="Año" Type="int" />
+          <Property Name="Antiguedad" Type="int" />
+          <Property Name="NoSerie" Type="varchar" MaxLength="250" />
+          <Property Name="KActual" Type="int" />
+          <Property Name="KUltimoMantenimiento" Type="int" />
+          <Property Name="UltimoMantReal" Type="varchar" MaxLength="50" />
+          <Property Name="FechaUltimoMant" Type="datetime" />
+          <Property Name="MantRealizar" Type="varchar" MaxLength="50" />
+          <Property Name="Cliente" Type="varchar" MaxLength="250" />
+          <Property Name="Negocio" Type="varchar" MaxLength="250" />
+          <Property Name="NActivoEAM" Type="varchar" MaxLength="50" />
+          <Property Name="RealizaMantenimiento" Type="varchar" MaxLength="250" />
+          <Property Name="TipoContMant" Type="varchar" MaxLength="50" />
+          <Property Name="SucursalAsig" Type="varchar" MaxLength="250" />
+          <Property Name="SucursalMant" Type="varchar" MaxLength="50" />
+          <Property Name="UbicFisUnidad" Type="varchar" MaxLength="250" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="T_Errr">
           <Key>
             <PropertyRef Name="Id" />
@@ -31,6 +71,24 @@
           <Property Name="Mensaje" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Ihmn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VIN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Kilometros" Type="int" Nullable="false" />
+          <Property Name="Horas" Type="int" />
+          <Property Name="Minutos" Type="int" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="T_Usrs">
           <Key>
@@ -88,6 +146,30 @@
           <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="1000" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_MAPRI.dbo.TC_Amcn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TC_Amcn">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="Accion" />
+            <PropertyRef Name="CreationDate" />
+            <PropertyRef Name="CreationUser" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="250" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" />
+          <Property Name="Teléfono" Type="varchar" MaxLength="50" />
+          <Property Name="Correo" Type="varchar" MaxLength="250" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="DeleteDate" Type="datetime" />
+          <Property Name="CreationUser" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastUpdateUser" Type="varchar" MaxLength="250" />
+          <Property Name="DeleteUser" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="TC_Anpc">
           <Key>
@@ -241,8 +323,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DB_MAPRIModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Amnl" EntityType="Self.T_Amnl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Ampr" EntityType="Self.T_Ampr" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Errr" EntityType="Self.T_Errr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Ihmn" EntityType="Self.T_Ihmn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Usrs" EntityType="Self.T_Usrs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TC_Abrn" EntityType="Self.TC_Abrn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TC_Acls" EntityType="Self.TC_Acls" Schema="dbo" store:Type="Tables" />
@@ -252,6 +337,23 @@
           <EntitySet Name="TC_Etyp" EntityType="Self.TC_Etyp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TC_Intr" EntityType="Self.TC_Intr" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TC_Ucst" EntityType="Self.TC_Ucst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TC_Amcn" EntityType="Self.TC_Amcn" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TC_Amcn].[Id] AS [Id], 
+    [TC_Amcn].[Empresa] AS [Empresa], 
+    [TC_Amcn].[Nombre] AS [Nombre], 
+    [TC_Amcn].[Teléfono] AS [Teléfono], 
+    [TC_Amcn].[Correo] AS [Correo], 
+    [TC_Amcn].[Activo] AS [Activo], 
+    [TC_Amcn].[Accion] AS [Accion], 
+    [TC_Amcn].[CreationDate] AS [CreationDate], 
+    [TC_Amcn].[LastUpdateDate] AS [LastUpdateDate], 
+    [TC_Amcn].[DeleteDate] AS [DeleteDate], 
+    [TC_Amcn].[CreationUser] AS [CreationUser], 
+    [TC_Amcn].[LastUpdateUser] AS [LastUpdateUser], 
+    [TC_Amcn].[DeleteUser] AS [DeleteUser]
+    FROM [dbo].[TC_Amcn] AS [TC_Amcn]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__TC_Anpc__IdClien__5EBF139D" Association="Self.FK__TC_Anpc__IdClien__5EBF139D">
             <End Role="TC_Ucst" EntitySet="TC_Ucst" />
             <End Role="TC_Anpc" EntitySet="TC_Anpc" />
@@ -354,6 +456,10 @@
             <End Role="TC_Etyp" EntitySet="TC_Etyp" />
             <End Role="TC_Intr" EntitySet="TC_Intr" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="DB_MAPRIModel.sysdiagrams" />
+          <EntitySet Name="T_Ampr" EntityType="DB_MAPRIModel.T_Ampr" />
+          <EntitySet Name="T_Ihmn" EntityType="DB_MAPRIModel.T_Ihmn" />
+          <EntitySet Name="TC_Amcn" EntityType="DB_MAPRIModel.TC_Amcn" />
         </EntityContainer>
         <EntityType Name="TC_Abrn">
           <Key>
@@ -555,6 +661,86 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="T_Ampr">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoUnidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Año" Type="Int32" />
+          <Property Name="Antiguedad" Type="Int32" />
+          <Property Name="NoSerie" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="KActual" Type="Int32" />
+          <Property Name="KUltimoMantenimiento" Type="Int32" />
+          <Property Name="UltimoMantReal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaUltimoMant" Type="DateTime" Precision="3" />
+          <Property Name="MantRealizar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cliente" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Negocio" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NActivoEAM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RealizaMantenimiento" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TipoContMant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SucursalAsig" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SucursalMant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UbicFisUnidad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="T_Ihmn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Kilometros" Type="Int32" Nullable="false" />
+          <Property Name="Horas" Type="Int32" />
+          <Property Name="Minutos" Type="Int32" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TC_Amcn">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Activo" />
+            <PropertyRef Name="Accion" />
+            <PropertyRef Name="CreationDate" />
+            <PropertyRef Name="CreationUser" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empresa" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Teléfono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+          <Property Name="CreationUser" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DeleteUser" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -741,6 +927,86 @@
                 <ScalarProperty Name="Accion" ColumnName="Accion" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Ampr">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.T_Ampr">
+              <MappingFragment StoreEntitySet="T_Ampr">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="UbicFisUnidad" ColumnName="UbicFisUnidad" />
+                <ScalarProperty Name="SucursalMant" ColumnName="SucursalMant" />
+                <ScalarProperty Name="SucursalAsig" ColumnName="SucursalAsig" />
+                <ScalarProperty Name="TipoContMant" ColumnName="TipoContMant" />
+                <ScalarProperty Name="RealizaMantenimiento" ColumnName="RealizaMantenimiento" />
+                <ScalarProperty Name="NActivoEAM" ColumnName="NActivoEAM" />
+                <ScalarProperty Name="Negocio" ColumnName="Negocio" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="MantRealizar" ColumnName="MantRealizar" />
+                <ScalarProperty Name="FechaUltimoMant" ColumnName="FechaUltimoMant" />
+                <ScalarProperty Name="UltimoMantReal" ColumnName="UltimoMantReal" />
+                <ScalarProperty Name="KUltimoMantenimiento" ColumnName="KUltimoMantenimiento" />
+                <ScalarProperty Name="KActual" ColumnName="KActual" />
+                <ScalarProperty Name="NoSerie" ColumnName="NoSerie" />
+                <ScalarProperty Name="Antiguedad" ColumnName="Antiguedad" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="TipoUnidad" ColumnName="TipoUnidad" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Ihmn">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.T_Ihmn">
+              <MappingFragment StoreEntitySet="T_Ihmn">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Minutos" ColumnName="Minutos" />
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
+                <ScalarProperty Name="Kilometros" ColumnName="Kilometros" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TC_Amcn">
+            <EntityTypeMapping TypeName="DB_MAPRIModel.TC_Amcn">
+              <MappingFragment StoreEntitySet="TC_Amcn">
+                <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+                <ScalarProperty Name="LastUpdateUser" ColumnName="LastUpdateUser" />
+                <ScalarProperty Name="CreationUser" ColumnName="CreationUser" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

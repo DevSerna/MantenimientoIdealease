@@ -70,7 +70,7 @@
                                 <!--    <a class="dropdown-item text-muted" href="#">Action</a>
                                 <a class="dropdown-item text-muted" href="#">Another action</a>-->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-muted gf-menu-item" href="#" data-bind="click:ConfirmarCerrarSesion">
+                                <a id="a_cerrar_sesion" class="dropdown-item text-muted gf-menu-item" href="#" >
                                     <i class="fas fa-sign-out-alt mr-3"></i>Cerrar Sesión
                                 </a>
                             </div>
@@ -107,7 +107,7 @@
                     </div>
                     <div class="modal-footer p-2">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" data-bind="click: CerrarSesion">Aceptar</button>
+                        <button id="b_cerrar_sesion" type="button" class="btn btn-primary" >Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -146,8 +146,17 @@
         };
 
         $(document).ready(function () {
-            ko.applyBindings(ViewModelHeadder, window.context_header);
-            ko.applyBindings(ViewModelModals, window.modales_layout);
+            //ko.applyBindings(ViewModelHeadder, window.context_header);
+            //ko.applyBindings(ViewModelModals, window.modales_layout);
+
+            $("#a_cerrar_sesion").click( function() {
+                ViewModelHeadder.ConfirmarCerrarSesion();
+            });
+
+              $("#b_cerrar_sesion").click( function() {
+                ViewModelModals.CerrarSesion();
+            });
+
         });
 
     </script>

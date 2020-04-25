@@ -36,5 +36,9 @@ namespace GF.MantenimientoIdealease.Data
         public virtual DbSet<TC_Etyp> TC_Etyp { get; set; }
         public virtual DbSet<TC_Intr> TC_Intr { get; set; }
         public virtual DbSet<TC_Ucst> TC_Ucst { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<T_Ampr> T_Ampr { get; set; }
+        public virtual DbSet<T_Ihmn> T_Ihmn { get; set; }
+        public virtual DbSet<TC_Amcn> TC_Amcn { get; set; }
     }
 }

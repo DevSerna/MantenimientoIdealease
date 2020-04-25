@@ -21,6 +21,10 @@
         <AssociationConnector Association="DB_MAPRIModel.FK__TC_Anpc__IdClien__5EBF139D" />
         <AssociationConnector Association="DB_MAPRIModel.FK__TC_Intr__IdDescr__4F7CD00D" />
         <AssociationConnector Association="DB_MAPRIModel.FK__TC_Intr__IdTipo__5070F446" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.sysdiagrams" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.T_Ampr" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.T_Ihmn" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="DB_MAPRIModel.TC_Amcn" Width="1.5" PointX="5.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

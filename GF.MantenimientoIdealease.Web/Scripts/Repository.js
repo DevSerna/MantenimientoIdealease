@@ -47,6 +47,7 @@ class Repository {
         this.URL = window.location.origin;
         this.URL_API = this.URL + "/api";
         this._usuarios = null;
+        this._historicoKilometraje = null;
 
     }
 
@@ -57,6 +58,15 @@ class Repository {
         }
 
         return this._usuarios;
+    }
+
+    get HistoricoKilometrajeController() {
+
+        if (!this._historicoKilometraje) {
+            this._historicoKilometraje = new HistoricoKilometrajeController(this.URL);
+        }
+
+        return this._historicoKilometraje;
     }
 
 }
@@ -77,6 +87,20 @@ class UsuariosController {
         let route = "/TryLogoutWebAPI";
         if (DEBUG) console.log("POST: " + this.Url + route);
         return Request("POST", this.Url + route), null, true;
+    }
+
+}
+
+class HistoricoKilometrajeController {
+
+    constructor(url = '') {
+        this.Url = url;
+    }
+
+    SubirArchivoInterface(archivo) {
+        let route = "/api/SubirArchivoInterface"
+        if (DEBUG) console.log("POST: " + this.Url + route);
+        return Request("POST", this.Url + route, archivo);
     }
 
 }
