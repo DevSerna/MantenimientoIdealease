@@ -103,4 +103,10 @@ class HistoricoKilometrajeController {
         return Request("POST", this.Url + route, archivo);
     }
 
+    ConsultarHistorico() {
+        let route = "/api/ConsultarHistorico"
+        if (DEBUG) console.log("POST: " + this.Url + route);
+        return Request("POST", this.Url + route);
+    }
+
 }

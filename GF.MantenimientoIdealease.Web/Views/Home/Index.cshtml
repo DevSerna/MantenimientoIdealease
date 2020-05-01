@@ -28,11 +28,47 @@
         <div id="gf-card-1" class="col-12 d-none">
             <article class="card shadow-1dp mb-4">
                 <header class="card-header shadow-sm bg-g-blue d-flex">
-                    <h5 class="m-0 p-0 text-white"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Opción 1</h5>
-                    <a class="ml-auto" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
+                    <h5 class="m-0 p-0 text-white"><i class="fas fa-history"></i>&nbsp;&nbsp;Histórico de Kilometraje</h5>
+                    <a class="ml-auto" data-bind="click:CargarTablaHistorico" style="cursor: pointer;"><i class="fas fa-sync-alt text-white"></i></a>
                 </header>
                 <div class="card-body">
+                    <div class="container">
 
+                        <div class="row d-flex flex-row-reverse">
+                            <div class="col-xs-6 col-md-4 col-lg-3">
+                                <button class="btn btn-primary btn-block d-none" data-bind="click:AbrirVentanaCargarInterface">Cargar Archivo</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-12">
+
+                                <div class="d-flex">
+                                    <h5 class="mt-3 text-left text-muted"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;Registro Histórico</h5>
+                                    <button class="btn btn-secondary ml-auto" data-bind="click:AbrirVentanaCargarInterface">Cargar Archivo</button>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 mt-3">
+                                <table id="tabla_historico" class="table-pointer table-bordered display text-muted stripe w-100 my-2">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left text-dark" width="20%" scope="col">Id</th>
+                                            <th class="text-left text-dark" width="20%" scope="col">VIN</th>
+                                            <th class="text-left text-dark" width="20%" scope="col">Fecha</th>
+                                            <th class="text-left text-dark" width="10%" scope="col">Kilómetros</th>
+                                            <th class="text-left text-dark" width="10%" scope="col">Horas</th>
+                                            <th class="text-left text-dark" width="10%" scope="col">Minutos</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
             </article>
         </div>
@@ -97,15 +133,13 @@
             </article>
         </div>
 
-
-
     </section>
 
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-3">
             <hr />
             <footer>
                 <div class="row">
@@ -156,10 +190,15 @@
                     <div class="container">
                         <div class="row">
 
-                            <div class="col-12 mt-3">
+                            <div class="col-12 mt-3 mb-1">
                                 <h6 class="text-muted"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;Interface del kilometraje recorrido de las unidades.</h6>
+                            </div>
+
+
+                            <div class="col-12">
+
                                 <input id="if_archivo_interface" type="file" class="d-none" accept=".xlsx,.csv" data-bind="event: { change: function(){ OnLoadFileInterface($element.files[0]) }  }" />
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-1">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-excel"></i></span>
                                     </div>
@@ -169,13 +208,21 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-12" data-bind="visible:MensajeArchivoCargado()">
+                                <div class="alert alert-success" data-bind="attr: { class:ClaseAlertaInterface }">
+                                    <h6 class="p-2"><strong>Aviso</strong> <span data-bind="text:MensajeArchivoCargado"></span></h6>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
                 </div>
-                <div class="modal-footer p-2">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" data-bind="click: SubirArchivoInterface">Subir</button>
+                <div class="modal-footer p-2 mb-2">
+                    <button type="button" class="btn btn-secondary" data-bind="click: CerrarModalInterface">Cerrar</button>
+                    <button type="button" class="btn btn-primary" data-bind="click: SubirArchivoInterface, enable: DatosArchivoInterface">Subir</button>
                 </div>
             </div>
         </div>
@@ -189,8 +236,10 @@
 
         const repositoryMain = new Repository();
 
+        let TablaHistorico = { Id: "tabla_historico", Inicializada: false, DataTable: null  };
+
         const cards = [
-            { Id: 1, Name: "Kilometraje recorrido ", Detail: "Cargar Archivo", Url: "#gf-card-1", Icon: "fa-info-circle", Color: "bg-g-orange-400" },
+            { Id: 1, Name: "Histórico de Kilometraje", Detail: "", Url: "#gf-card-1", Icon: "fa-history", Color: "bg-g-orange-400" },
             { Id: 2, Name: "Mantenimiento a Unidades", Detail: "", Url: "#gf-card-2", Icon: "fa-tools", Color: "bg-g-red-600" },
             { Id: 3, Name: "Mantenimiento a Equipos Aliados", Detail: "", Url: "#gf-card-3", Icon: "fa-tools", Color: "bg-g-green-600" },
             { Id: 4, Name: "Opción 4", Detail: "", Url: "#gf-card-4", Icon: "fa-info-circle", Color: "bg-g-deep-blue-600" }
@@ -201,10 +250,10 @@
             Cards: ko.observableArray(cards),
             ChangeCard: function (data) {
 
-                if (data.Id == 1) {
+                /*if (data.Id == 1) {
                     $("#modal_cargar_int_kil").modal("show");
                     return;
-                }
+                }*/
 
                 for (let i = 1; i <= cards.length; i++) {
                     let idCard = "#gf-card-" + i;
@@ -214,8 +263,17 @@
                     }
                     $(idCard).addClass('d-none');
                 }
-            }
+            },
+            AbrirVentanaCargarInterface: function () {
+                $("#modal_cargar_int_kil").modal("show");
+            },
+            CargarTablaHistorico: function () {
+                $("#modal_procesando").modal('show');
+                repository.HistoricoKilometrajeController.ConsultarHistorico()
+                    .then(LoadTablaHistorico)
+                    .catch(e => console.error(e));
 
+            }
         };
 
         const controller_modales = {
@@ -224,7 +282,9 @@
             DatosArchivoInterface: ko.observable(),
             FileName: ko.observable(),
             FileContentType: ko.observable(),
-            FileSize : ko.observable(),
+            FileSize: ko.observable(),
+            ClaseAlertaInterface: ko.observable(),
+            MensajeArchivoCargado: ko.observable(''),
             OnLoadFileInterface: async function (file) {
 
                 if (file) {
@@ -255,15 +315,46 @@
 
                 console.log(data);
 
+                $("#modal_cargar_int_kil").modal("hide");
                 $("#modal_procesando").modal("show");
 
                 repository.HistoricoKilometrajeController.SubirArchivoInterface(data)
                     .then(HandleSubirArchivoInterface);
+            },
+            CerrarModalInterface: function () {
+                $("#modal_cargar_int_kil").modal("hide");
+                this.MensajeArchivoCargado('');
+                controller_modales.NombreArchivoInterface('Selecciona un archivo...');
+                controller_modales.EstatusArchivoInterface('Buscar');
+                controller_modales.DatosArchivoInterface(null);
             }
         }
 
         function HandleSubirArchivoInterface(data) {
-            console.log(data)
+
+            let mensaje = '';
+
+            controller_modales.NombreArchivoInterface('Selecciona un archivo...');
+            controller_modales.EstatusArchivoInterface('Buscar');
+            controller_modales.DatosArchivoInterface(null);
+
+
+            if (data.Success) {
+                mensaje = 'Se guardaron correctamente ' + data.Data.length + ' registros.';
+                controller_modales.ClaseAlertaInterface('alert-success')
+            }
+            if (!data.Success) {
+                mensaje = "Ocurrió un error."
+                controller_modales.ClaseAlertaInterface('alert-danger')
+            }
+
+            controller_modales.MensajeArchivoCargado(mensaje);
+
+            $("#modal_procesando").modal("hide");
+            $("#modal_cargar_int_kil").modal("show");
+
+
+
         }
 
         function GetFileData(file) {
@@ -275,7 +366,7 @@
                     const render = new FileReader();
 
                     render.onload = function (response) {
-                       
+
                         var buffer = new Uint8Array(response.target.result);
                         resolve(Array.from(buffer));
                     };
@@ -298,10 +389,52 @@
             });
         }
 
+        function LoadTablaHistorico(data) {
+
+            console.log(data);
+
+            if (!TablaHistorico.Inicializada) {
+                TablaHistorico.DataTable = $('#'+TablaHistorico.Id).DataTable({
+                    columns: [
+                        { data: 'Id' },
+                        { data: 'VIN' },
+                        { data: 'FechaF' },
+                        { data: 'Kilometros' },
+                        { data: 'Horas' },
+                        { data: 'Minutos' }
+                    ],
+                    columnDefs: [
+                        // { targets: [0, 1, 2, 3, 4, 5], className: "text-center" },
+                    ],
+                    searching: true,
+                    lengthChange: false,
+                    info: true,
+                    select: {
+                        style: 'single'
+                    },
+                    language: { url: window.location.origin + "/Scripts/Spanish.json" },
+                    orderCellsTop: true,
+                    data: []
+                });
+
+                TablaHistorico.Inicializada = true;
+            }
+
+            if (data.Success && TablaHistorico.Inicializada) {
+                TablaHistorico.DataTable.clear();
+                TablaHistorico.DataTable.rows.add(data.Data).draw();
+            }
+
+            setTimeout(function () { $("#modal_procesando").modal("hide"); }, 500);
+
+        }
+
         $(document).ready(function () {
 
             ko.applyBindings(controller, window.context);
             ko.applyBindings(controller_modales, window.modales);
+
+            controller.CargarTablaHistorico();
 
 
         });

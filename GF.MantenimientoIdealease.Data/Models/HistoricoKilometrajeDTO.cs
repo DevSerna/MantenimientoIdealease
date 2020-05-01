@@ -11,8 +11,10 @@ namespace GF.MantenimientoIdealease.Data.Models
         public int Id { get; set; }
         public string VIN { get; set; }
         public System.DateTime Fecha { get; set; }
+        public string FechaF { get; set; }
         public int Kilometros { get; set; }
         public Nullable<int> Horas { get; set; }
         public Nullable<int> Minutos { get; set; }
+        public string CreationUser { get; set;  }
     }
 }
